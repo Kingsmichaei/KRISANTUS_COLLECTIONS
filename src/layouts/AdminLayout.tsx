@@ -21,17 +21,20 @@ function AdminLayout() {
   }
 
   function navClassName({ isActive }: { isActive: boolean }) {
-    return `block rounded-lg px-4 py-3 text-sm font-medium ${
-      isActive ? 'bg-black text-white' : 'text-gray-700 hover:bg-gray-100'
+    return `block border-l-2 px-4 py-3 text-sm font-medium transition-colors ${
+      isActive
+        ? 'border-[var(--brand-olive)] bg-[var(--brand-paper-strong)] text-[var(--brand-ink)]'
+        : 'border-transparent text-[rgba(23,20,18,0.68)] hover:border-[var(--brand-stone)] hover:bg-[var(--brand-paper)] hover:text-[var(--brand-ink)]'
     }`
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <aside className="fixed left-0 top-0 hidden h-screen w-64 border-r border-gray-200 bg-white md:block">
-        <div className="border-b border-gray-200 px-6 py-5">
-          <h1 className="text-lg font-bold text-gray-900">KRISANTUS COLLECTION</h1>
-          <p className="mt-1 text-xs text-gray-500">Admin Panel</p>
+    <div className="min-h-screen bg-[var(--brand-paper)] text-[var(--brand-ink)]">
+      <aside className="fixed left-0 top-0 hidden h-screen w-72 border-r border-[var(--brand-line)] bg-white md:block">
+        <div className="border-b border-[var(--brand-line)] px-6 py-7">
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-[var(--brand-olive)]">Studio CMS</p>
+          <h1 className="mt-3 text-xl font-black tracking-[-0.04em]">KRISANTUS COLLECTION</h1>
+          <p className="mt-1 text-xs text-[rgba(23,20,18,0.56)]">Content management</p>
         </div>
 
         <nav className="p-4">
@@ -48,11 +51,11 @@ function AdminLayout() {
             ))}
           </div>
 
-          <div className="mt-8 border-t border-gray-200 pt-4">
+          <div className="mt-8 border-t border-[var(--brand-line)] pt-4">
             <button
               type="button"
               onClick={handleLogout}
-              className="w-full rounded-lg px-4 py-3 text-left text-sm font-medium text-red-600 hover:bg-red-50"
+              className="w-full px-4 py-3 text-left text-sm font-medium text-red-700 hover:bg-red-50"
             >
               Sign Out
             </button>
@@ -60,19 +63,22 @@ function AdminLayout() {
         </nav>
       </aside>
 
-      <div className="md:ml-64">
-        <header className="border-b border-gray-200 bg-white px-4 py-4 md:px-6">
+      <div className="md:ml-72">
+        <header className="border-b border-[var(--brand-line)] bg-white px-4 py-4 md:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <button
                 type="button"
                 onClick={() => setMobileOpen((current) => !current)}
-                className="rounded-lg border border-gray-300 p-2 text-gray-700 md:hidden"
+                className="border border-[var(--brand-line)] p-2 text-[var(--brand-ink)] md:hidden"
                 aria-label="Toggle navigation"
               >
                 ☰
               </button>
-              <h2 className="text-lg font-semibold text-gray-900">Admin Panel</h2>
+              <div>
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-[var(--brand-olive)]">Workspace</p>
+                <h2 className="text-lg font-black tracking-[-0.03em]">Admin Panel</h2>
+              </div>
             </div>
           </div>
 
@@ -93,7 +99,7 @@ function AdminLayout() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="w-full rounded-lg px-4 py-3 text-left text-sm font-medium text-red-600 hover:bg-red-50"
+                className="w-full px-4 py-3 text-left text-sm font-medium text-red-700 hover:bg-red-50"
               >
                 Sign Out
               </button>
@@ -101,7 +107,7 @@ function AdminLayout() {
           )}
         </header>
 
-        <main className="p-4 md:p-6">
+        <main className="p-4 md:p-8">
           <Outlet />
         </main>
       </div>

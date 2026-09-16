@@ -27,40 +27,69 @@ function Showcase() {
     fetchItems()
   }, [])
 
-  if (loading) {
-    return <div className="mx-auto max-w-7xl px-6 py-20 text-sm text-gray-600">Loading showcase...</div>
-  }
-
-  if (error) {
-    return <div className="mx-auto max-w-7xl px-6 py-20 text-red-600">{error}</div>
-  }
-
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mb-10 max-w-2xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">Our work</p>
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Recent design and print work</h1>
-      </div>
+    <div className="bg-[var(--brand-paper)]">
+      <section className="page-shell py-14 sm:py-18 lg:py-20">
+        <div className="max-w-4xl">
+          <p className="section-label">Selected work</p>
+          <h1 className="mt-4 text-4xl font-black tracking-[-0.07em] text-[var(--brand-ink)] sm:text-5xl lg:text-6xl">
+            Creative work shaped to feel premium, personal, and memorable.
+          </h1>
+        </div>
+      </section>
 
-      {items.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-10 text-center text-gray-600">
-          No showcase items have been uploaded yet.
-        </div>
-      ) : (
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {items.map((item) => (
-            <article key={item.id} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-              <img src={item.image_url} alt={item.title || 'Portfolio item'} className="h-64 w-full object-cover" />
-              <div className="space-y-3 p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">{item.category || 'Project'}</p>
-                <h2 className="text-2xl font-bold text-gray-900">{item.title}</h2>
-                {item.description && <p className="text-sm leading-7 text-gray-600">{item.description}</p>}
-              </div>
-            </article>
-          ))}
-        </div>
-      )}
-    </section>
+      <section className="page-shell pb-16 sm:pb-20 lg:pb-24">
+        {loading ? (
+          <div className="text-sm text-[rgba(23,20,18,0.7)]">Loading showcase...</div>
+        ) : error ? (
+          <div className="text-red-700">{error}</div>
+        ) : items.length === 0 ? (
+          <div className="border border-dashed border-[var(--brand-line)] bg-white/60 p-10 text-center text-[rgba(23,20,18,0.72)]">
+            No showcase items have been uploaded yet.
+          </div>
+        ) : (
+          <div className="grid gap-5 lg:grid-cols-12">
+            {items.map((item, index) => {
+              const position = index % 4
+              const tall = position === 0 || position === 3
+              const wide = position === 1 || position === 2
+
+              return (
+                <article
+                  key={item.id}
+                  className={`${
+                    tall ? 'lg:col-span-5' : wide ? 'lg:col-span-7' : 'lg:col-span-4'
+                  } overflow-hidden border border-[var(--brand-line)] bg-white`}
+                >
+                  <div className="group relative overflow-hidden">
+                    <img
+                      src={item.image_url}
+                      alt={item.title || 'Portfolio item'}
+                      className={`w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] ${
+                        tall ? 'h-[28rem] lg:h-[36rem]' : 'h-[22rem] lg:h-[28rem]'
+                      }`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[rgba(23,20,18,0.6)] via-transparent to-transparent" />
+
+                    <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[rgba(255,255,255,0.76)]">
+                        {item.category || 'Project'}
+                      </p>
+                      <h2 className="mt-3 text-2xl font-black tracking-[-0.05em] sm:text-3xl">{item.title}</h2>
+                      {item.description && (
+                        <p className="mt-3 max-w-lg text-sm leading-7 text-[rgba(255,255,255,0.82)]">
+                          {item.description}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        )}
+      </section>
+    </div>
   )
 }
 

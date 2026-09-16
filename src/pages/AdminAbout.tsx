@@ -91,58 +91,59 @@ function AdminAbout() {
   }
 
   if (loading) {
-    return <div className="rounded-xl border border-gray-200 bg-white p-10 text-center text-sm text-gray-600">Loading About content...</div>
+    return <div className="border border-[var(--brand-line)] bg-white p-10 text-center text-sm text-[rgba(23,20,18,0.68)]">Loading About content...</div>
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">About</h1>
-        <p className="mt-2 text-sm text-gray-600">Manage the story, values, and image displayed publicly on the About page.</p>
+        <p className="section-label">Site content</p>
+        <h1 className="mt-3 text-4xl font-black tracking-[-0.07em]">About</h1>
+        <p className="mt-3 text-sm text-[rgba(23,20,18,0.68)]">Manage the story, values, and image displayed publicly on the About page.</p>
       </div>
 
-      {error && <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-      {success && <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">{success}</div>}
+      {error && <div className="border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
+      {success && <div className="border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">{success}</div>}
 
-      <form onSubmit={handleSubmit} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <form onSubmit={handleSubmit} className="border border-[var(--brand-line)] bg-white p-6 sm:p-8">
         <div className="grid gap-5">
           <div>
-            <label htmlFor="about-heading" className="mb-2 block text-sm font-medium text-gray-700">Heading</label>
+            <label htmlFor="about-heading" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">Heading</label>
             <input
               id="about-heading"
               value={about.heading}
               onChange={(event) => setAbout((current) => ({ ...current, heading: event.target.value }))}
               required
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-black"
+              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
             />
           </div>
 
           <div>
-            <label htmlFor="about-content" className="mb-2 block text-sm font-medium text-gray-700">Content</label>
+            <label htmlFor="about-content" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">Content</label>
             <textarea
               id="about-content"
               rows={8}
               value={about.content}
               onChange={(event) => setAbout((current) => ({ ...current, content: event.target.value }))}
               required
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-black"
+              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
             />
           </div>
 
           <div>
-            <label htmlFor="about-image" className="mb-2 block text-sm font-medium text-gray-700">About Image</label>
+            <label htmlFor="about-image" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">About Image</label>
             <input
               id="about-image"
               type="file"
               accept="image/*"
               onChange={(event) => setSelectedFile(event.target.files?.[0] || null)}
-              className="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700"
+              className="block w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-3 py-2 text-sm text-[var(--brand-ink)]"
             />
           </div>
 
           {about.image_url && (
             <div>
-              <img src={about.image_url} alt={about.heading || 'About'} className="h-64 w-full rounded-xl object-cover" />
+              <img src={about.image_url} alt={about.heading || 'About'} className="h-64 w-full object-cover" />
             </div>
           )}
         </div>
@@ -151,7 +152,7 @@ function AdminAbout() {
           <button
             type="submit"
             disabled={saving}
-            className="rounded-lg bg-black px-5 py-3 text-sm font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+            className="brand-button disabled:cursor-not-allowed disabled:opacity-50"
           >
             {saving ? 'Saving...' : 'Save About Content'}
           </button>

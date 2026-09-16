@@ -32,13 +32,14 @@ function AdminLogin() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-6">
-      <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-sm">
-        <h1 className="text-2xl font-bold text-gray-900">
+    <div className="flex min-h-screen items-center justify-center bg-[var(--brand-paper)] px-6 py-12">
+      <div className="w-full max-w-md border border-[var(--brand-line)] bg-white p-8 sm:p-10">
+        <p className="section-label">Studio CMS</p>
+        <h1 className="mt-4 text-4xl font-black tracking-[-0.07em]">
           Admin Login
         </h1>
 
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="mt-3 text-sm text-[rgba(23,20,18,0.68)]">
           Sign in to manage KRISANTUS COLLECTION.
         </p>
 
@@ -46,7 +47,7 @@ function AdminLogin() {
           <div>
             <label
               htmlFor="email"
-              className="mb-2 block text-sm font-medium text-gray-700"
+              className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]"
             >
               Email
             </label>
@@ -57,14 +58,14 @@ function AdminLogin() {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               required
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-black"
+              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
             />
           </div>
 
           <div>
             <label
               htmlFor="password"
-              className="mb-2 block text-sm font-medium text-gray-700"
+              className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]"
             >
               Password
             </label>
@@ -75,7 +76,7 @@ function AdminLogin() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               required
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-black"
+              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
             />
           </div>
 
@@ -88,7 +89,7 @@ function AdminLogin() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-black px-4 py-3 font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+            className="brand-button w-full disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>

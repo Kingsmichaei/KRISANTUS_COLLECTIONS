@@ -77,14 +77,15 @@ function AdminInquiries() {
     : null
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Inquiries</h1>
-        <p className="mt-2 text-sm text-gray-600">Review and manage customer messages and new requests.</p>
+        <p className="section-label">Client conversations</p>
+        <h1 className="mt-3 text-4xl font-black tracking-[-0.07em]">Inquiries</h1>
+        <p className="mt-3 text-sm text-[rgba(23,20,18,0.68)]">Review and manage customer messages and new requests.</p>
       </div>
 
-      {error && <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-      {success && <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">{success}</div>}
+      {error && <div className="border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
+      {success && <div className="border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">{success}</div>}
 
       {loading ? (
         <div className="rounded-xl border border-gray-200 bg-white p-10 text-center text-sm text-gray-600">
@@ -129,7 +130,7 @@ function AdminInquiries() {
             )}
           </div>
 
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className="border border-[var(--brand-line)] bg-white p-6 sm:p-8">
             {selectedInquiry ? (
               <div className="space-y-6">
                 <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">

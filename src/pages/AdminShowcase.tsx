@@ -166,11 +166,12 @@ function AdminShowcase() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Showcase / Our Work</h1>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="section-label">Public content</p>
+          <h1 className="mt-3 text-4xl font-black tracking-[-0.07em]">Showcase / Our Work</h1>
+          <p className="mt-3 text-sm text-[rgba(23,20,18,0.68)]">
             Upload and manage the projects and creative work you want customers to see.
           </p>
         </div>
@@ -181,17 +182,17 @@ function AdminShowcase() {
             resetForm()
             setShowForm((current) => !current)
           }}
-          className="rounded-lg bg-black px-4 py-2.5 text-sm font-semibold text-white hover:bg-gray-800"
+          className="brand-button"
         >
           {showForm ? 'Cancel' : 'Add Work'}
         </button>
       </div>
 
-      {error && <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-      {success && <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">{success}</div>}
+      {error && <div className="border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
+      {success && <div className="border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">{success}</div>}
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <form onSubmit={handleSubmit} className="border border-[var(--brand-line)] bg-white p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-gray-900">{editingId ? 'Edit work item' : 'Add a new work item'}</h2>
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">
