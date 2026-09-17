@@ -49,7 +49,7 @@ function Home() {
             </p>
             <Link to="/contact" className="brand-button">Get a Quote</Link>
           </div>
-          <div className="order-1 relative h-[13rem] overflow-hidden sm:h-[16rem] lg:order-2 lg:h-[27rem]">
+          <div className="order-1 relative h-[16rem] overflow-hidden sm:h-[20rem] lg:order-2 lg:h-[27rem]">
             {featuredImage ? (
               <img src={featuredImage} alt="Featured Krisantus Collection work" className="!h-full w-full object-contain" />
             ) : (
