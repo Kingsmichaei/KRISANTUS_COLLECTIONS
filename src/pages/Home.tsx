@@ -44,21 +44,17 @@ function Home() {
             <h1 className="display-heading max-w-xl text-[2.65rem] sm:text-6xl lg:text-[4.35rem]">
               Creative Solutions<br />for <span className="text-[var(--brand-olive)]">Your Brand</span>
             </h1>
-            <p className="max-w-lg text-sm leading-6 text-[rgba(16,18,22,0.72)] sm:text-base sm:leading-7">
+            <p className="max-w-lg text-sm leading-6 text-[rgba(2, 3, 3, 0.72)] sm:text-base sm:leading-7">
               {loading ? ' ' : settings.description || 'From eye-catching prints to powerful designs, we bring your ideas to life.'}
             </p>
             <Link to="/contact" className="brand-button">Get a Quote</Link>
           </div>
-          <div className="order-1 relative min-h-[18rem] overflow-hidden bg-[var(--brand-ink)] lg:order-2 lg:min-h-[27rem]">
+          <div className="order-1 relative h-[13rem] overflow-hidden sm:h-[16rem] lg:order-2 lg:h-[27rem]">
             {featuredImage ? (
-              <img src={featuredImage} alt="Featured Krisantus Collection work" className="h-full min-h-[18rem] w-full object-cover lg:min-h-[27rem]" />
+              <img src={featuredImage} alt="Featured Krisantus Collection work" className="!h-full w-full object-contain" />
             ) : (
-              <div className="h-full min-h-[18rem] bg-[linear-gradient(135deg,var(--brand-olive),var(--brand-ink))] lg:min-h-[27rem]" />
+              <div className="h-full bg-[linear-gradient(135deg,var(--brand-olive),var(--brand-ink))]" />
             )}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/45 via-transparent to-[var(--brand-olive)]/20" />
-            <div className="absolute bottom-4 left-4 border-l-2 border-white pl-3 text-xs font-semibold uppercase tracking-[0.18em] text-white sm:bottom-6 sm:left-6">
-              Make it memorable
-            </div>
           </div>
         </div>
       </section>
@@ -69,13 +65,13 @@ function Home() {
             <p className="section-label">Our services</p>
             <h2 className="mt-2 section-title">What We Do Best</h2>
           </div>
-          <p className="max-w-md text-sm leading-6 text-[rgba(16,18,22,0.65)]">
+          <p className="max-w-md text-sm leading-6 text-[rgba(0, 0, 0, 0.65)]">
             We offer a complete range of creative services to help individuals and businesses stand out with quality, creativity and attention to detail.
           </p>
         </div>
 
         {loading ? (
-          <p className="text-sm text-[rgba(16,18,22,0.7)]">Loading services...</p>
+          <p className="text-sm text-[rgba(0, 0, 0, 0.7)]">Loading services...</p>
         ) : error ? (
           <div className="banner-error">{error}</div>
         ) : services.length === 0 ? (
@@ -93,7 +89,7 @@ function Home() {
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 <h3 className="mt-3 font-display text-base font-bold">{service.name}</h3>
-                <p className="mt-2 text-xs leading-5 text-[rgba(16,18,22,0.62)]">{service.description}</p>
+                <p className="mt-2 text-xs leading-5 text-[rgba(0, 0, 0, 0.62)]">{service.description}</p>
                 <span className="mt-4 block h-0.5 w-8 bg-[var(--brand-olive)] transition-all duration-300 group-hover:w-12" />
               </article>
             ))}
@@ -129,9 +125,6 @@ function Home() {
       </section>
 
       <section className="page-shell grid gap-8 py-10 sm:py-14 lg:grid-cols-[1fr_1fr] lg:items-center lg:py-16">
-        <div className="overflow-hidden bg-[var(--brand-paper-strong)]">
-          <img src={showcase[1]?.image_url || featuredImage || undefined} alt="Krisantus creative work" className="aspect-[1.35] w-full object-cover" />
-        </div>
         <div>
           <p className="section-label">About us</p>
           <h2 className="mt-2 section-title">Your Vision, Our Creativity</h2>
@@ -139,17 +132,6 @@ function Home() {
             Krisantus Collection is a creative printing and design studio committed to delivering high-quality, innovative and affordable solutions. We help individuals and businesses build strong brands through professional design, print and customization services.
           </p>
           <Link to="/about" className="brand-button brand-button--sm mt-6">Learn More</Link>
-        </div>
-      </section>
-
-      <section className="bg-[var(--brand-olive)] text-white">
-        <div className="page-shell flex flex-col gap-5 py-8 sm:flex-row sm:items-center sm:justify-between sm:py-9">
-          <div>
-            <p className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-white/80">Let's create something amazing</p>
-            <h2 className="mt-2 font-display text-2xl font-bold sm:text-3xl">Ready to Bring Your Ideas to Life?</h2>
-            <p className="mt-1 text-sm text-white/80">Get in touch with us today for a free consultation or quote.</p>
-          </div>
-          <Link to="/contact" className="brand-button--light shrink-0">Get a Quote</Link>
         </div>
       </section>
     </div>

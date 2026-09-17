@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 :root {
-  --brand-ink: #171717;
+  --brand-ink: #080808;
   --brand-ink-soft: #2d2d2d;
   --brand-paper: #f7f7f5;
   --brand-paper-strong: #eeeeec;
@@ -47,6 +47,7 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 14px;
 }
 
 button,

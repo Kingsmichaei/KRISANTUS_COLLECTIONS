@@ -11,7 +11,7 @@ function MainLayout() {
         <Outlet />
       </main>
 
-      <footer className="border-t border-[var(--brand-line)] bg-[var(--brand-ink)] text-[rgba(255,255,255,0.72)]">
+      <footer className="border-t border-[var(--brand-line)] bg-[var(--brand-olive)] text-[rgba(255,255,255,0.72)]">
         <div className="page-shell grid py-5 sm:py-5 md:grid-cols-[1.15fr_0.85fr] md:items-end lg:py-3">
           <div>
            

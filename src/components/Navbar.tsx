@@ -28,14 +28,11 @@ function Navbar() {
     <header className="sticky top-0 z-50 border-b border-[var(--brand-line)] bg-white/95 backdrop-blur">
       <div className="page-shell flex h-[4.5rem] items-center justify-between gap-3 sm:h-20">
         <Link to="/" className="flex min-w-0 items-center gap-2.5 text-[var(--brand-ink)] sm:gap-3">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-[var(--brand-olive)] font-display text-lg font-bold text-white sm:h-11 sm:w-11">
-            K
-          </span>
           <span className="min-w-0 text-left leading-tight">
-            <span className="block truncate font-display text-base font-bold uppercase tracking-[-0.03em] sm:text-lg">
+            <span className="block truncate font-display text-base font-bold uppercase tracking-[0.00em] sm:text-lg">
               Krisantus
             </span>
-            <span className="block text-[0.48rem] font-semibold uppercase tracking-[0.38em] text-[var(--brand-ink)]">
+            <span className="block text-[1rem] font-semibold font-display uppercase tracking-[0.1em] text-[var(--brand-ink)]">
               Collection
             </span>
           </span>
@@ -49,7 +46,7 @@ function Navbar() {
               end={item.to === '/'}
               className={({ isActive }) =>
                 `relative py-2 text-[1rem] font-semibold transition-colors after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[var(--brand-olive)] after:transition-all ${
-                  isActive ? 'text-[var(--brand-olive)] after:w-full' : 'text-[rgba(16,18,22,0.72)] after:w-0 hover:text-[var(--brand-olive)] hover:after:w-full'
+                  isActive ? 'text-[var(--brand-olive)] after:w-full' : 'text-[rgba(4, 5, 7, 0.72)] after:w-0 hover:text-[var(--brand-olive)] hover:after:w-full'
                 }`
               }
             >
