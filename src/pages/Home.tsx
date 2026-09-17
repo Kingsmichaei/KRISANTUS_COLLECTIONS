@@ -113,9 +113,9 @@ function Home() {
               Showcase items will appear here once the admin uploads them.
             </div>
           ) : (
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="flex snap-x snap-mandatory gap-3 touch-pan-x overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {showcase.map((item) => (
-                <Link to="/showcase" key={item.id} className="group block overflow-hidden bg-[var(--brand-paper-strong)]">
+                <Link to="/showcase" key={item.id} className="group block min-w-[82vw] snap-start overflow-hidden bg-[var(--brand-paper-strong)] sm:min-w-[46vw] lg:min-w-[31%]">
                   <img src={item.image_url} alt={item.title} className="aspect-square h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                 </Link>
               ))}
