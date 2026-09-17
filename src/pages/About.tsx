@@ -25,18 +25,18 @@ function About() {
   }, [])
 
   if (loading) {
-    return <div className="page-shell py-20 text-sm text-[rgba(23,20,18,0.7)]">Loading company information...</div>
+    return <div className="page-shell py-16 text-sm text-[rgba(16,18,22,0.7)] sm:py-20">Loading company information...</div>
   }
 
   if (error) {
-    return <div className="page-shell py-20 text-red-700">{error}</div>
+    return <div className="page-shell py-16 sm:py-20"><div className="banner-error">{error}</div></div>
   }
 
   if (!about) {
     return (
-      <div className="page-shell py-20 text-center">
-        <h1 className="text-3xl font-black tracking-[-0.06em] text-[var(--brand-ink)]">About</h1>
-        <p className="mt-4 text-[rgba(23,20,18,0.72)]">
+      <div className="page-shell py-16 text-center sm:py-20">
+        <h1 className="font-display text-3xl font-semibold tracking-[-0.01em] text-[var(--brand-ink)]">About</h1>
+        <p className="mt-4 text-[rgba(16,18,22,0.72)]">
           Information about the business will appear here once it is added from the admin panel.
         </p>
       </div>
@@ -45,30 +45,30 @@ function About() {
 
   return (
     <div className="bg-[var(--brand-paper)]">
-      <section className="page-shell py-14 sm:py-18 lg:py-20">
-        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+      <section className="page-shell py-10 sm:py-14 lg:py-16">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <div>
             <p className="section-label">About us</p>
-            <h1 className="mt-4 max-w-2xl text-4xl font-black tracking-[-0.07em] text-[var(--brand-ink)] sm:text-5xl lg:text-6xl">
+            <h1 className="display-heading mt-4 max-w-2xl text-[2.25rem] sm:text-5xl lg:text-6xl">
               {about.heading}
             </h1>
           </div>
 
-          <p className="max-w-md text-lg leading-8 text-[rgba(23,20,18,0.72)]">
+          <p className="max-w-md text-base leading-7 text-[rgba(16,18,22,0.72)] sm:text-lg sm:leading-8">
             We create thoughtful design and production work that helps businesses show up clearly and confidently.
           </p>
         </div>
       </section>
 
-      <section className="page-shell pb-16 sm:pb-20 lg:pb-24">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+      <section className="page-shell pb-12 sm:pb-16 lg:pb-20">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
           {about.image_url && (
             <div className="overflow-hidden border border-[var(--brand-line)] bg-white">
-              <img src={about.image_url} alt={about.heading} className="h-[26rem] w-full object-cover lg:h-[40rem]" />
+              <img src={about.image_url} alt={about.heading} className="h-64 w-full object-cover sm:h-96 lg:h-[40rem]" />
             </div>
           )}
 
-          <div className="space-y-5 pt-2 text-lg leading-8 text-[rgba(23,20,18,0.8)]">
+          <div className="space-y-4 pt-1 text-base leading-7 text-[rgba(16,18,22,0.8)] sm:space-y-5 sm:text-lg sm:leading-8">
             {about.content.split('\n').map((paragraph, index) => (
               <p key={`${paragraph}-${index}`}>{paragraph}</p>
             ))}

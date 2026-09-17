@@ -5,7 +5,7 @@ import { uploadFileToBucket } from '../lib/content'
 import type { BusinessSettings, Service } from '../types'
 
 const defaultSettings: BusinessSettings = {
-  business_name: 'KRISANTUS COLLECTION',
+  business_name: 'Krisantus Collection',
   description: '',
   phone: '',
   whatsapp: '',
@@ -104,44 +104,60 @@ function Contact() {
 
   return (
     <div className="bg-[var(--brand-paper)]">
-      <section className="page-shell py-14 sm:py-18 lg:py-20">
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+      <section className="page-shell py-10 sm:py-14 lg:py-16">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
             <p className="section-label">Get in touch</p>
-            <h1 className="mt-4 text-4xl font-black tracking-[-0.07em] text-[var(--brand-ink)] sm:text-5xl lg:text-6xl">
+            <h1 className="display-heading mt-4 text-[2.25rem] sm:text-5xl lg:text-6xl">
               Tell us about your next project.
             </h1>
           </div>
 
-          <p className="max-w-xl text-lg leading-8 text-[rgba(23,20,18,0.72)]">
-            We’d love to understand your goals, timeline, and the kind of work you want to bring to life.
+          <p className="max-w-xl text-base leading-7 text-[rgba(16,18,22,0.72)] sm:text-lg sm:leading-8">
+            We&rsquo;d love to understand your goals, timeline, and the kind of work you want to bring to life.
           </p>
         </div>
       </section>
 
-      <section className="page-shell pb-16 sm:pb-20 lg:pb-24">
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="border border-[var(--brand-line)] bg-white p-6 sm:p-8">
-            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[var(--brand-olive)]">
+      <section className="page-shell pb-12 sm:pb-16 lg:pb-20">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="border border-[var(--brand-line)] bg-white p-5 sm:p-8">
+            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">
               Contact details
             </p>
-            <h2 className="mt-4 text-3xl font-black tracking-[-0.06em] text-[var(--brand-ink)]">
+            <h2 className="mt-4 font-display text-2xl font-semibold tracking-[-0.01em] text-[var(--brand-ink)] sm:text-3xl">
               {settings.business_name}
             </h2>
-            <p className="mt-5 text-base leading-8 text-[rgba(23,20,18,0.74)]">{settings.description}</p>
+            <p className="mt-4 text-sm leading-7 text-[rgba(16,18,22,0.74)] sm:text-base sm:leading-8">{settings.description}</p>
 
-            <div className="mt-8 space-y-4 text-sm leading-7 text-[rgba(23,20,18,0.78)]">
-              {settings.phone && <p>Phone: {settings.phone}</p>}
-              {settings.email && <p>Email: {settings.email}</p>}
-              {settings.address && <p>Address: {settings.address}</p>}
-              {settings.opening_hours && <p>Opening Hours: {settings.opening_hours}</p>}
+            <div className="mt-6 space-y-3.5 text-sm leading-7 text-[rgba(16,18,22,0.78)] sm:mt-8">
+              {settings.phone && (
+                <p className="break-words">
+                  <span className="font-semibold text-[var(--brand-ink)]">Phone:</span> {settings.phone}
+                </p>
+              )}
+              {settings.email && (
+                <p className="break-words">
+                  <span className="font-semibold text-[var(--brand-ink)]">Email:</span> {settings.email}
+                </p>
+              )}
+              {settings.address && (
+                <p className="break-words">
+                  <span className="font-semibold text-[var(--brand-ink)]">Address:</span> {settings.address}
+                </p>
+              )}
+              {settings.opening_hours && (
+                <p className="break-words">
+                  <span className="font-semibold text-[var(--brand-ink)]">Opening Hours:</span> {settings.opening_hours}
+                </p>
+              )}
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="border border-[var(--brand-line)] bg-white p-6 sm:p-8">
+          <form onSubmit={handleSubmit} className="border border-[var(--brand-line)] bg-white p-5 sm:p-8">
             <div className="grid gap-5 md:grid-cols-2">
               <div className="md:col-span-2">
-                <label htmlFor="full-name" className="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--brand-olive)]">
+                <label htmlFor="full-name" className="field-label">
                   Full Name
                 </label>
                 <input
@@ -149,45 +165,48 @@ function Contact() {
                   value={fullName}
                   onChange={(event) => setFullName(event.target.value)}
                   required
-                  className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 text-[var(--brand-ink)] outline-none focus:border-[var(--brand-ink)]"
+                  className="field-input"
                 />
               </div>
 
               <div>
-                <label htmlFor="phone" className="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--brand-olive)]">
+                <label htmlFor="phone" className="field-label">
                   Phone
                 </label>
                 <input
                   id="phone"
+                  type="tel"
+                  inputMode="tel"
                   value={phone}
                   onChange={(event) => setPhone(event.target.value)}
                   required
-                  className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 text-[var(--brand-ink)] outline-none focus:border-[var(--brand-ink)]"
+                  className="field-input"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--brand-olive)]">
+                <label htmlFor="email" className="field-label">
                   Email (optional)
                 </label>
                 <input
                   id="email"
                   type="email"
+                  inputMode="email"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 text-[var(--brand-ink)] outline-none focus:border-[var(--brand-ink)]"
+                  className="field-input"
                 />
               </div>
 
               <div className="md:col-span-2">
-                <label htmlFor="service-required" className="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--brand-olive)]">
+                <label htmlFor="service-required" className="field-label">
                   Service Required
                 </label>
                 <select
                   id="service-required"
                   value={selectedServiceId}
                   onChange={(event) => setSelectedServiceId(event.target.value)}
-                  className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 text-[var(--brand-ink)] outline-none focus:border-[var(--brand-ink)]"
+                  className="field-select"
                 >
                   <option value="">Select a service</option>
                   {services.map((service) => (
@@ -199,14 +218,14 @@ function Contact() {
               </div>
 
               <div className="md:col-span-2">
-                <label htmlFor="preferred-contact" className="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--brand-olive)]">
+                <label htmlFor="preferred-contact" className="field-label">
                   Preferred Contact Method
                 </label>
                 <select
                   id="preferred-contact"
                   value={preferredContact}
                   onChange={(event) => setPreferredContact(event.target.value)}
-                  className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 text-[var(--brand-ink)] outline-none focus:border-[var(--brand-ink)]"
+                  className="field-select"
                 >
                   <option value="WhatsApp">WhatsApp</option>
                   <option value="Phone">Phone</option>
@@ -215,7 +234,7 @@ function Contact() {
               </div>
 
               <div className="md:col-span-2">
-                <label htmlFor="message" className="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--brand-olive)]">
+                <label htmlFor="message" className="field-label">
                   Message
                 </label>
                 <textarea
@@ -224,12 +243,12 @@ function Contact() {
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
                   required
-                  className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 text-[var(--brand-ink)] outline-none focus:border-[var(--brand-ink)]"
+                  className="field-textarea"
                 />
               </div>
 
               <div className="md:col-span-2">
-                <label htmlFor="reference-image" className="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--brand-olive)]">
+                <label htmlFor="reference-image" className="field-label">
                   Reference Image (optional)
                 </label>
                 <input
@@ -237,18 +256,18 @@ function Contact() {
                   type="file"
                   accept="image/*"
                   onChange={handleFileChange}
-                  className="block w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-3 py-2 text-sm text-[var(--brand-ink)]"
+                  className="field-file"
                 />
               </div>
             </div>
 
-            {error && <div className="mt-5 border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-            {success && <div className="mt-5 border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">{success}</div>}
+            {error && <div className="mt-5 banner-error">{error}</div>}
+            {success && <div className="mt-5 banner-success">{success}</div>}
 
             <button
               type="submit"
               disabled={submitting}
-              className="mt-6 w-full border border-[var(--brand-ink)] bg-[var(--brand-ink)] px-4 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[var(--brand-ink-soft)] disabled:cursor-not-allowed disabled:opacity-60"
+              className="brand-button mt-6 w-full disabled:cursor-not-allowed disabled:opacity-60"
             >
               {submitting ? 'Sending inquiry...' : 'Send Inquiry'}
             </button>

@@ -166,12 +166,12 @@ function AdminShowcase() {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <div className="space-y-6 sm:space-y-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="section-label">Public content</p>
-          <h1 className="mt-3 text-4xl font-black tracking-[-0.07em]">Showcase / Our Work</h1>
-          <p className="mt-3 text-sm text-[rgba(23,20,18,0.68)]">
+          <h1 className="mt-3 font-display text-3xl font-semibold tracking-[-0.01em] sm:text-4xl">Showcase / Our Work</h1>
+          <p className="mt-3 text-sm text-[rgba(16,18,22,0.68)]">
             Upload and manage the projects and creative work you want customers to see.
           </p>
         </div>
@@ -182,22 +182,22 @@ function AdminShowcase() {
             resetForm()
             setShowForm((current) => !current)
           }}
-          className="brand-button"
+          className="brand-button w-full sm:w-auto"
         >
           {showForm ? 'Cancel' : 'Add Work'}
         </button>
       </div>
 
-      {error && <div className="border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-      {success && <div className="border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">{success}</div>}
+      {error && <div className="banner-error">{error}</div>}
+      {success && <div className="banner-success">{success}</div>}
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="border border-[var(--brand-line)] bg-white p-6 sm:p-8">
-          <h2 className="text-xl font-semibold text-gray-900">{editingId ? 'Edit work item' : 'Add a new work item'}</h2>
+        <form onSubmit={handleSubmit} className="border border-[var(--brand-line)] bg-white p-5 sm:p-8">
+          <h2 className="font-display text-xl font-semibold text-[var(--brand-ink)]">{editingId ? 'Edit work item' : 'Add a new work item'}</h2>
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             <div className="md:col-span-2">
-              <label htmlFor="showcase-title" className="mb-2 block text-sm font-medium text-gray-700">
+              <label htmlFor="showcase-title" className="field-label">
                 Title
               </label>
               <input
@@ -205,12 +205,12 @@ function AdminShowcase() {
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
                 required
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-black"
+                className="field-input"
               />
             </div>
 
             <div className="md:col-span-2">
-              <label htmlFor="showcase-description" className="mb-2 block text-sm font-medium text-gray-700">
+              <label htmlFor="showcase-description" className="field-label">
                 Description
               </label>
               <textarea
@@ -218,24 +218,24 @@ function AdminShowcase() {
                 rows={4}
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-black"
+                className="field-textarea"
               />
             </div>
 
             <div>
-              <label htmlFor="showcase-category" className="mb-2 block text-sm font-medium text-gray-700">
+              <label htmlFor="showcase-category" className="field-label">
                 Category
               </label>
               <input
                 id="showcase-category"
                 value={category}
                 onChange={(event) => setCategory(event.target.value)}
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-black"
+                className="field-input"
               />
             </div>
 
             <div>
-              <label htmlFor="showcase-image" className="mb-2 block text-sm font-medium text-gray-700">
+              <label htmlFor="showcase-image" className="field-label">
                 Image
               </label>
               <input
@@ -243,22 +243,22 @@ function AdminShowcase() {
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
-                className="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700"
+                className="field-file"
               />
             </div>
           </div>
 
           {previewUrl && (
             <div className="mt-6">
-              <img src={previewUrl} alt={title || 'Selected work'} className="h-52 w-full rounded-xl object-cover" />
+              <img src={previewUrl} alt={title || 'Selected work'} className="h-44 w-full object-cover sm:h-52" />
             </div>
           )}
 
-          <div className="mt-6 flex justify-end">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
             <button
               type="submit"
               disabled={saving}
-              className="rounded-lg bg-black px-5 py-3 text-sm font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="brand-button disabled:cursor-not-allowed disabled:opacity-50"
             >
               {saving ? 'Saving...' : editingId ? 'Update Item' : 'Save Item'}
             </button>
@@ -267,40 +267,40 @@ function AdminShowcase() {
       )}
 
       {loading ? (
-        <div className="rounded-xl border border-gray-200 bg-white p-10 text-center text-sm text-gray-600">
+        <div className="studio-card p-10 text-center text-sm text-[rgba(16,18,22,0.68)]">
           Loading work items...
         </div>
       ) : items.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-gray-300 bg-white p-10 text-center">
-          <h2 className="text-lg font-semibold text-gray-900">No work items yet</h2>
-          <p className="mt-2 text-sm text-gray-600">Add your first project or branded work to show on the public showcase.</p>
+        <div className="border border-dashed border-[var(--brand-line-strong)] bg-white p-10 text-center">
+          <h2 className="font-display text-lg font-semibold text-[var(--brand-ink)]">No work items yet</h2>
+          <p className="mt-2 text-sm text-[rgba(16,18,22,0.68)]">Add your first project or branded work to show on the public showcase.</p>
         </div>
       ) : (
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {items.map((item) => (
-            <div key={item.id} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-              <img src={item.image_url} alt={item.title} className="h-56 w-full object-cover" />
+            <div key={item.id} className="studio-card overflow-hidden">
+              <img src={item.image_url} alt={item.title} className="h-48 w-full object-cover sm:h-56" />
 
-              <div className="space-y-3 p-5">
+              <div className="space-y-3 p-4 sm:p-5">
                 <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-gray-500">{item.category || 'General'}</p>
-                  <h3 className="mt-2 text-xl font-semibold text-gray-900">{item.title}</h3>
+                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-[var(--brand-olive)]">{item.category || 'General'}</p>
+                  <h3 className="mt-2 font-display text-xl font-semibold text-[var(--brand-ink)]">{item.title}</h3>
                 </div>
 
-                {item.description && <p className="text-sm leading-6 text-gray-600">{item.description}</p>}
+                {item.description && <p className="text-sm leading-6 text-[rgba(16,18,22,0.68)]">{item.description}</p>}
 
-                <div className="flex gap-2 pt-2">
+                <div className="flex gap-2 pt-1">
                   <button
                     type="button"
                     onClick={() => handleEdit(item)}
-                    className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50"
+                    className="flex min-h-11 flex-1 items-center justify-center border border-[var(--brand-line)] px-3 text-sm font-medium text-[var(--brand-ink)] hover:bg-[var(--brand-paper)]"
                   >
                     Edit
                   </button>
                   <button
                     type="button"
                     onClick={() => handleDelete(item)}
-                    className="flex-1 rounded-lg border border-red-200 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50"
+                    className="flex min-h-11 flex-1 items-center justify-center border border-red-200 px-3 text-sm font-medium text-red-600 hover:bg-red-50"
                   >
                     Delete
                   </button>

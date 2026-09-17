@@ -159,12 +159,12 @@ function AdminServices() {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <div className="space-y-6 sm:space-y-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="section-label">Public content</p>
-          <h1 className="mt-3 text-4xl font-black tracking-[-0.07em]">Services</h1>
-          <p className="mt-3 text-sm text-[rgba(23,20,18,0.68)]">Manage the services displayed publicly on the website.</p>
+          <h1 className="mt-3 font-display text-3xl font-semibold tracking-[-0.01em] sm:text-4xl">Services</h1>
+          <p className="mt-3 text-sm text-[rgba(16,18,22,0.68)]">Manage the services displayed publicly on the website.</p>
         </div>
 
         <button
@@ -173,77 +173,77 @@ function AdminServices() {
             resetForm()
             setShowForm((current) => !current)
           }}
-          className="brand-button"
+          className="brand-button w-full sm:w-auto"
         >
           {showForm ? 'Cancel' : 'Add Service'}
         </button>
       </div>
 
-      {error && <div className="border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-      {success && <div className="border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">{success}</div>}
+      {error && <div className="banner-error">{error}</div>}
+      {success && <div className="banner-success">{success}</div>}
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="border border-[var(--brand-line)] bg-white p-6 sm:p-8">
-          <h2 className="text-xl font-semibold text-gray-900">{editingId ? 'Edit service' : 'Add a new service'}</h2>
+        <form onSubmit={handleSubmit} className="border border-[var(--brand-line)] bg-white p-5 sm:p-8">
+          <h2 className="font-display text-xl font-semibold text-[var(--brand-ink)]">{editingId ? 'Edit service' : 'Add a new service'}</h2>
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             <div>
-              <label htmlFor="service-name" className="mb-2 block text-sm font-medium text-gray-700">Service Name</label>
+              <label htmlFor="service-name" className="field-label">Service Name</label>
               <input
                 id="service-name"
                 value={form.name}
                 onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
                 required
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-black"
+                className="field-input"
               />
             </div>
 
             <div>
-              <label htmlFor="service-category" className="mb-2 block text-sm font-medium text-gray-700">Category</label>
+              <label htmlFor="service-category" className="field-label">Category</label>
               <input
                 id="service-category"
                 value={form.category}
                 onChange={(event) => setForm((current) => ({ ...current, category: event.target.value }))}
                 required
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-black"
+                className="field-input"
               />
             </div>
 
             <div className="md:col-span-2">
-              <label htmlFor="service-description" className="mb-2 block text-sm font-medium text-gray-700">Description</label>
+              <label htmlFor="service-description" className="field-label">Description</label>
               <textarea
                 id="service-description"
                 rows={5}
                 value={form.description}
                 onChange={(event) => setForm((current) => ({ ...current, description: event.target.value }))}
                 required
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-black"
+                className="field-textarea"
               />
             </div>
 
             <div className="md:col-span-2">
-              <label htmlFor="service-image" className="mb-2 block text-sm font-medium text-gray-700">Image</label>
+              <label htmlFor="service-image" className="field-label">Image</label>
               <input
                 id="service-image"
                 type="file"
                 accept="image/*"
                 onChange={handleFileChange}
-                className="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700"
+                className="field-file"
               />
             </div>
           </div>
 
           {previewUrl && (
             <div className="mt-6">
-              <img src={previewUrl} alt={form.name || 'Service preview'} className="h-48 w-full rounded-xl object-cover" />
+              <img src={previewUrl} alt={form.name || 'Service preview'} className="h-44 w-full object-cover sm:h-52" />
             </div>
           )}
 
-          <div className="mt-8 flex justify-end">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-end">
             <button
               type="submit"
               disabled={saving}
-              className="rounded-lg bg-black px-5 py-3 text-sm font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="brand-button disabled:cursor-not-allowed disabled:opacity-50"
             >
               {saving ? 'Saving...' : editingId ? 'Update Service' : 'Save Service'}
             </button>
@@ -252,39 +252,39 @@ function AdminServices() {
       )}
 
       {loading ? (
-        <div className="rounded-xl border border-gray-200 bg-white p-10 text-center text-sm text-gray-600">
+        <div className="studio-card p-10 text-center text-sm text-[rgba(16,18,22,0.68)]">
           Loading services...
         </div>
       ) : services.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-gray-300 bg-white p-10 text-center">
-          <h2 className="text-lg font-semibold text-gray-900">No services yet</h2>
-          <p className="mt-2 text-sm text-gray-600">Add your first service to begin displaying it on the public website.</p>
+        <div className="border border-dashed border-[var(--brand-line-strong)] bg-white p-10 text-center">
+          <h2 className="font-display text-lg font-semibold text-[var(--brand-ink)]">No services yet</h2>
+          <p className="mt-2 text-sm text-[rgba(16,18,22,0.68)]">Add your first service to begin displaying it on the public website.</p>
         </div>
       ) : (
-        <div className="grid gap-5 lg:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-2">
           {services.map((service) => (
-            <div key={service.id} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+            <div key={service.id} className="studio-card overflow-hidden">
               {service.image_url && (
-                <img src={service.image_url} alt={service.name} className="h-52 w-full object-cover" />
+                <img src={service.image_url} alt={service.name} className="h-44 w-full object-cover sm:h-52" />
               )}
 
-              <div className="p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">{service.category}</p>
-                <h2 className="mt-2 text-2xl font-bold text-gray-900">{service.name}</h2>
-                <p className="mt-3 text-sm leading-7 text-gray-600">{service.description}</p>
+              <div className="p-4 sm:p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-olive)]">{service.category}</p>
+                <h2 className="mt-2 font-display text-xl font-semibold text-[var(--brand-ink)] sm:text-2xl">{service.name}</h2>
+                <p className="mt-3 text-sm leading-6 text-[rgba(16,18,22,0.68)] sm:leading-7">{service.description}</p>
 
                 <div className="mt-5 flex gap-2">
                   <button
                     type="button"
                     onClick={() => handleEdit(service)}
-                    className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50"
+                    className="flex min-h-11 flex-1 items-center justify-center border border-[var(--brand-line)] px-3 text-sm font-medium text-[var(--brand-ink)] hover:bg-[var(--brand-paper)]"
                   >
                     Edit
                   </button>
                   <button
                     type="button"
                     onClick={() => handleDelete(service)}
-                    className="flex-1 rounded-lg border border-red-200 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50"
+                    className="flex min-h-11 flex-1 items-center justify-center border border-red-200 px-3 text-sm font-medium text-red-600 hover:bg-red-50"
                   >
                     Delete
                   </button>

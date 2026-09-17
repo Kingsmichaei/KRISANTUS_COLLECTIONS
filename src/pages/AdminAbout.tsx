@@ -91,64 +91,64 @@ function AdminAbout() {
   }
 
   if (loading) {
-    return <div className="border border-[var(--brand-line)] bg-white p-10 text-center text-sm text-[rgba(23,20,18,0.68)]">Loading About content...</div>
+    return <div className="studio-card p-10 text-center text-sm text-[rgba(16,18,22,0.68)]">Loading About content...</div>
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <div>
         <p className="section-label">Site content</p>
-        <h1 className="mt-3 text-4xl font-black tracking-[-0.07em]">About</h1>
-        <p className="mt-3 text-sm text-[rgba(23,20,18,0.68)]">Manage the story, values, and image displayed publicly on the About page.</p>
+        <h1 className="mt-3 font-display text-3xl font-semibold tracking-[-0.01em] sm:text-4xl">About</h1>
+        <p className="mt-3 text-sm text-[rgba(16,18,22,0.68)]">Manage the story, values, and image displayed publicly on the About page.</p>
       </div>
 
-      {error && <div className="border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-      {success && <div className="border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">{success}</div>}
+      {error && <div className="banner-error">{error}</div>}
+      {success && <div className="banner-success">{success}</div>}
 
-      <form onSubmit={handleSubmit} className="border border-[var(--brand-line)] bg-white p-6 sm:p-8">
+      <form onSubmit={handleSubmit} className="border border-[var(--brand-line)] bg-white p-5 sm:p-8">
         <div className="grid gap-5">
           <div>
-            <label htmlFor="about-heading" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">Heading</label>
+            <label htmlFor="about-heading" className="field-label">Heading</label>
             <input
               id="about-heading"
               value={about.heading}
               onChange={(event) => setAbout((current) => ({ ...current, heading: event.target.value }))}
               required
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 
           <div>
-            <label htmlFor="about-content" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">Content</label>
+            <label htmlFor="about-content" className="field-label">Content</label>
             <textarea
               id="about-content"
               rows={8}
               value={about.content}
               onChange={(event) => setAbout((current) => ({ ...current, content: event.target.value }))}
               required
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-textarea"
             />
           </div>
 
           <div>
-            <label htmlFor="about-image" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">About Image</label>
+            <label htmlFor="about-image" className="field-label">About Image</label>
             <input
               id="about-image"
               type="file"
               accept="image/*"
               onChange={(event) => setSelectedFile(event.target.files?.[0] || null)}
-              className="block w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-3 py-2 text-sm text-[var(--brand-ink)]"
+              className="field-file"
             />
           </div>
 
           {about.image_url && (
             <div>
-              <img src={about.image_url} alt={about.heading || 'About'} className="h-64 w-full object-cover" />
+              <img src={about.image_url} alt={about.heading || 'About'} className="h-48 w-full object-cover sm:h-64" />
             </div>
           )}
         </div>
 
-        <div className="mt-8 flex justify-end">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-end">
           <button
             type="submit"
             disabled={saving}

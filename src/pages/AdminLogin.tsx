@@ -32,51 +32,48 @@ function AdminLogin() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[var(--brand-paper)] px-6 py-12">
-      <div className="w-full max-w-md border border-[var(--brand-line)] bg-white p-8 sm:p-10">
+    <div className="flex min-h-screen items-center justify-center bg-[var(--brand-paper)] px-4 py-12 sm:px-6">
+      <div className="w-full max-w-md border border-[var(--brand-line)] bg-white p-6 sm:p-10">
         <p className="section-label">Studio CMS</p>
-        <h1 className="mt-4 text-4xl font-black tracking-[-0.07em]">
+        <h1 className="mt-4 font-display text-3xl font-semibold tracking-[-0.01em] sm:text-4xl">
           Admin Login
         </h1>
 
-        <p className="mt-3 text-sm text-[rgba(23,20,18,0.68)]">
-          Sign in to manage KRISANTUS COLLECTION.
+        <p className="mt-3 text-sm text-[rgba(16,18,22,0.68)]">
+          Sign in to manage Krisantus Collection.
         </p>
 
         <form onSubmit={handleLogin} className="mt-8 space-y-5">
           <div>
-            <label
-              htmlFor="email"
-              className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]"
-            >
+            <label htmlFor="email" className="field-label">
               Email
             </label>
 
             <input
               id="email"
               type="email"
+              inputMode="email"
+              autoComplete="username"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               required
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 
           <div>
-            <label
-              htmlFor="password"
-              className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]"
-            >
+            <label htmlFor="password" className="field-label">
               Password
             </label>
 
             <input
               id="password"
               type="password"
+              autoComplete="current-password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               required
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 

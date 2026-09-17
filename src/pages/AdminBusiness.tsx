@@ -120,29 +120,29 @@ function AdminBusiness() {
 
   if (loading) {
     return (
-      <div className="border border-[var(--brand-line)] bg-white p-10 text-center text-sm text-[rgba(23,20,18,0.68)]">
+      <div className="studio-card p-10 text-center text-sm text-[rgba(16,18,22,0.68)]">
         Loading business information...
       </div>
     )
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <div>
         <p className="section-label">Site settings</p>
-        <h1 className="mt-3 text-4xl font-black tracking-[-0.07em]">Business Information</h1>
-        <p className="mt-3 text-sm text-[rgba(23,20,18,0.68)]">
+        <h1 className="mt-3 font-display text-3xl font-semibold tracking-[-0.01em] sm:text-4xl">Business Information</h1>
+        <p className="mt-3 text-sm text-[rgba(16,18,22,0.68)]">
           Update the business details customers see across the website.
         </p>
       </div>
 
-      {error && <div className="border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-      {success && <div className="border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">{success}</div>}
+      {error && <div className="banner-error">{error}</div>}
+      {success && <div className="banner-success">{success}</div>}
 
-      <form onSubmit={handleSubmit} className="border border-[var(--brand-line)] bg-white p-6 sm:p-8">
+      <form onSubmit={handleSubmit} className="border border-[var(--brand-line)] bg-white p-5 sm:p-8">
         <div className="grid gap-5 md:grid-cols-2">
           <div className="md:col-span-2">
-            <label htmlFor="business-name" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">
+            <label htmlFor="business-name" className="field-label">
               Business Name
             </label>
             <input
@@ -150,12 +150,12 @@ function AdminBusiness() {
               value={settings.business_name}
               onChange={(event) => handleFieldChange('business_name', event.target.value)}
               required
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 
           <div className="md:col-span-2">
-            <label htmlFor="business-description" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">
+            <label htmlFor="business-description" className="field-label">
               Description
             </label>
             <textarea
@@ -163,104 +163,104 @@ function AdminBusiness() {
               rows={5}
               value={settings.description || ''}
               onChange={(event) => handleFieldChange('description', event.target.value)}
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 
           <div>
-            <label htmlFor="business-phone" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">Phone</label>
+            <label htmlFor="business-phone" className="field-label">Phone</label>
             <input
               id="business-phone"
               value={settings.phone || ''}
               onChange={(event) => handleFieldChange('phone', event.target.value)}
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 
           <div>
-            <label htmlFor="business-whatsapp" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">WhatsApp</label>
+            <label htmlFor="business-whatsapp" className="field-label">WhatsApp</label>
             <input
               id="business-whatsapp"
               value={settings.whatsapp || ''}
               onChange={(event) => handleFieldChange('whatsapp', event.target.value)}
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 
           <div>
-            <label htmlFor="business-email" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">Email</label>
+            <label htmlFor="business-email" className="field-label">Email</label>
             <input
               id="business-email"
               type="email"
               value={settings.email || ''}
               onChange={(event) => handleFieldChange('email', event.target.value)}
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 
           <div>
-            <label htmlFor="business-hours" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">Opening Hours</label>
+            <label htmlFor="business-hours" className="field-label">Opening Hours</label>
             <input
               id="business-hours"
               value={settings.opening_hours || ''}
               onChange={(event) => handleFieldChange('opening_hours', event.target.value)}
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 
           <div className="md:col-span-2">
-            <label htmlFor="business-address" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">Address</label>
+            <label htmlFor="business-address" className="field-label">Address</label>
             <textarea
               id="business-address"
               rows={3}
               value={settings.address || ''}
               onChange={(event) => handleFieldChange('address', event.target.value)}
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 
           <div>
-            <label htmlFor="social-facebook" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">Facebook</label>
+            <label htmlFor="social-facebook" className="field-label">Facebook</label>
             <input
               id="social-facebook"
               value={settings.social_links?.facebook || ''}
               onChange={(event) => handleSocialChange('facebook', event.target.value)}
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 
           <div>
-            <label htmlFor="social-instagram" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">Instagram</label>
+            <label htmlFor="social-instagram" className="field-label">Instagram</label>
             <input
               id="social-instagram"
               value={settings.social_links?.instagram || ''}
               onChange={(event) => handleSocialChange('instagram', event.target.value)}
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 
           <div>
-            <label htmlFor="social-linkedin" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">LinkedIn</label>
+            <label htmlFor="social-linkedin" className="field-label">LinkedIn</label>
             <input
               id="social-linkedin"
               value={settings.social_links?.linkedin || ''}
               onChange={(event) => handleSocialChange('linkedin', event.target.value)}
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
 
           <div>
-            <label htmlFor="social-whatsapp" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">WhatsApp Link</label>
+            <label htmlFor="social-whatsapp" className="field-label">WhatsApp Link</label>
             <input
               id="social-whatsapp"
               value={settings.social_links?.whatsapp || ''}
               onChange={(event) => handleSocialChange('whatsapp', event.target.value)}
-              className="w-full border border-[var(--brand-line)] bg-[var(--brand-paper)] px-4 py-3 outline-none focus:border-[var(--brand-ink)]"
+              className="field-input"
             />
           </div>
         </div>
 
-        <div className="mt-8 flex justify-end">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-end">
           <button
             type="submit"
             disabled={saving}
