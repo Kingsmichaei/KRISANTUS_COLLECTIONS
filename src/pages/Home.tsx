@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase'
 import type { BusinessSettings, PortfolioItem, Service } from '../types'
 
 const defaultSettings: BusinessSettings = {
-  business_name: 'Krisantus Collection',
+  business_name: 'Krisantus Collections',
   description: 'Creative printing, design, branding, and customization services for businesses and personal projects.',
   phone: '', whatsapp: '', email: '', address: '', opening_hours: '', social_links: {},
 }
