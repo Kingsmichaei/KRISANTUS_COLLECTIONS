@@ -90,8 +90,55 @@ function AdminAbout() {
     }
   }
 
+  async function handleDeleteImage() {
+  if (!about.id || !about.image_url) {
+    return
+  }
+
+  const confirmed = window.confirm(
+    'Are you sure you want to delete the About image?'
+  )
+
+  if (!confirmed) {
+    return
+  }
+
+  setSaving(true)
+  setError('')
+  setSuccess('')
+
+  try {
+    await deleteFileFromBucket('showcase', about.image_url)
+
+    const { error: updateError } = await supabase
+      .from('about_content')
+      .update({ image_url: null })
+      .eq('id', about.id)
+
+    if (updateError) {
+      throw new Error(updateError.message)
+    }
+
+    setAbout((current) => ({
+      ...current,
+      image_url: '',
+    }))
+
+    setSelectedFile(null)
+    setSuccess('About image deleted successfully.')
+  } catch (deleteError) {
+    setError(
+      deleteError instanceof Error
+        ? deleteError.message
+        : 'Unable to delete the About image.'
+    )
+  } finally {
+    setSaving(false)
+  }
+}
+
   if (loading) {
-    return <div className="studio-card p-10 text-center text-sm text-[rgba(16,18,22,0.68)]">Loading About content...</div>
+    return <div className="studio-card p-10 text-center text-sm text-[rgba(16,18,22,0.68)]">...</div>
   }
 
   return (
@@ -141,11 +188,24 @@ function AdminAbout() {
             />
           </div>
 
-          {about.image_url && (
-            <div>
-              <img src={about.image_url} alt={about.heading || 'About'} className="h-48 w-full object-cover sm:h-64" />
-            </div>
-          )}
+         {about.image_url && (
+  <div>
+    <img
+      src={about.image_url}
+      alt={about.heading || 'About'}
+      className="h-48 w-full object-cover sm:h-64"
+    />
+
+    <button
+      type="button"
+      onClick={handleDeleteImage}
+      disabled={saving}
+      className="mt-3 border border-red-200 px-4 py-2 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+    >
+      {saving ? 'Deleting...' : 'Delete Image'}
+    </button>
+  </div>
+)}
         </div>
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-end">

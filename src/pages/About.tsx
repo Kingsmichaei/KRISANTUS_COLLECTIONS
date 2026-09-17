@@ -54,9 +54,9 @@ function About() {
             </h1>
           </div>
 
-          <p className="max-w-md text-base leading-7 text-[rgba(16,18,22,0.72)] sm:text-lg sm:leading-8">
+          {/* <p className="max-w-md text-base leading-7 text-[rgba(16,18,22,0.72)] sm:text-lg sm:leading-8">
             We create thoughtful design and production work that helps businesses show up clearly and confidently.
-          </p>
+          </p> */}
         </div>
       </section>
 

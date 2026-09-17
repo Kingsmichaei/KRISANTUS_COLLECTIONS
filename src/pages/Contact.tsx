@@ -28,6 +28,7 @@ function Contact() {
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function fetchContactData() {
@@ -46,6 +47,7 @@ function Contact() {
           setSelectedServiceId(servicesResult.data[0].id)
         }
       }
+      setLoading(false)
     }
 
     fetchContactData()
@@ -126,10 +128,11 @@ function Contact() {
               Contact details
             </p>
             <h2 className="mt-4 font-display text-2xl font-semibold tracking-[-0.01em] text-[var(--brand-ink)] sm:text-3xl">
-              {settings.business_name}
+            {loading ? '\u00A0' : settings.business_name}
             </h2>
-            <p className="mt-4 text-sm leading-7 text-[rgba(16,18,22,0.74)] sm:text-base sm:leading-8">{settings.description}</p>
-
+            <p className="mt-4 text-sm leading-7 text-[rgba(16,18,22,0.74)] sm:text-base sm:leading-8"> 
+            {loading ? '\u00A0' : settings.description}</p>
+        
             <div className="mt-6 space-y-3.5 text-sm leading-7 text-[rgba(16,18,22,0.78)] sm:mt-8">
               {settings.phone && (
                 <p className="break-words">

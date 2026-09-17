@@ -12,11 +12,9 @@ function MainLayout() {
       </main>
 
       <footer className="border-t border-[var(--brand-line)] bg-[var(--brand-ink)] text-[rgba(255,255,255,0.72)]">
-        <div className="page-shell grid gap-10 py-12 sm:py-14 md:grid-cols-[1.15fr_0.85fr] md:items-end lg:py-16">
+        <div className="page-shell grid py-5 sm:py-5 md:grid-cols-[1.15fr_0.85fr] md:items-end lg:py-3">
           <div>
-            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[rgba(255,255,255,0.5)]">
-              Krisantus Collection
-            </p>
+           
             <h3 className="mt-4 font-display text-2xl font-semibold leading-tight tracking-[-0.01em] text-white sm:text-3xl lg:text-4xl">
               Crafted for brands with a point of view.
             </h3>
@@ -28,7 +26,7 @@ function MainLayout() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 text-sm leading-7 sm:grid-cols-3 md:text-right">
+          <div className="grid grid-cols-2 gap-6 text-sm leading-7 sm:grid-cols-2 md:text-right">
             <div>
               <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[rgba(255,255,255,0.45)]">Studio</p>
               <div className="mt-3 flex flex-col gap-2">
@@ -44,12 +42,12 @@ function MainLayout() {
                 <Link to="/admin/login" className="hover:text-white">Admin</Link>
               </div>
             </div>
-            <div className="col-span-2 sm:col-span-1">
-              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[rgba(255,255,255,0.45)]">Studio focus</p>
+            {/* <div className="col-span-2 sm:col-span-1">
+              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[rgba(255,255,255,0.45)]">Service</p>
               <p className="mt-3 leading-6 text-[rgba(255,255,255,0.6)]">
-                Print, branding, and creative customization &mdash; shaped into materials people remember.
+                Print, branding, and creative customization.
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
 

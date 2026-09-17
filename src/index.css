@@ -1,27 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  /* Neutral, photo-forward chrome — the uploaded work (banners, jerseys, prints)
-     supplies the color; the site itself stays out of the way. */
-  --brand-ink: #101216;
-  --brand-ink-soft: #23262d;
-  --brand-paper: #f4f5f7;
-  --brand-paper-strong: #e7eaf0;
+  --brand-ink: #171717;
+  --brand-ink-soft: #2d2d2d;
+  --brand-paper: #f7f7f5;
+  --brand-paper-strong: #eeeeec;
   --brand-cream: #ffffff;
-  --brand-stone: #c7ccd6;
-  /* Single confident accent — an ink-blue, doing double duty as the literal
-     colour of print and the professional/corporate signal. Used sparingly. */
-  --brand-olive: #1d4ed8;
-  --brand-olive-soft: #3f68e0;
-  --brand-olive-deep: #1740ad;
-  --brand-rust: #d64545;
-  --brand-rust-soft: #e56d6d;
+  --brand-stone: #bfc1c2;
+  --brand-olive: #c1121f;
+  --brand-olive-soft: #df2734;
+  --brand-olive-deep: #980d18;
+  --brand-rust: #c1121f;
+  --brand-rust-soft: #df2734;
   --brand-line: rgba(16, 18, 22, 0.12);
   --brand-line-strong: rgba(16, 18, 22, 0.24);
   --brand-shadow: 0 20px 48px rgba(16, 18, 22, 0.10);
   --brand-shadow-lg: 0 32px 72px rgba(16, 18, 22, 0.16);
-  --font-display: 'Fraunces', ui-serif, Georgia, serif;
-  --font-sans: 'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Segoe UI', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
   --tap-min: 44px;
 }
 
@@ -84,7 +81,7 @@ table {
 @layer components {
   /* ---------- Layout shell ---------- */
   .page-shell {
-    width: min(100% - 2rem, 1400px);
+    width: min(100% - 2rem, 1240px);
     margin-inline: auto;
   }
 
@@ -107,9 +104,9 @@ table {
 
   .section-label {
     color: var(--brand-olive);
-    font-size: 0.72rem;
+    font-size: 0.62rem;
     font-weight: 600;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
   }
 
@@ -143,7 +140,7 @@ table {
   }
 
   .section-copy {
-    color: rgba(24, 20, 15, 0.72);
+    color: rgba(16, 18, 22, 0.72);
     font-size: 0.975rem;
     line-height: 1.7rem;
   }
@@ -164,13 +161,13 @@ table {
     justify-content: center;
     gap: 0.5rem;
     min-height: var(--tap-min);
-    border-radius: 2px;
+    border-radius: 999px;
     padding: 0.85rem 1.35rem;
     font-family: var(--font-sans);
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-transform: none;
     text-align: center;
     transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
     -webkit-tap-highlight-color: transparent;
@@ -211,6 +208,21 @@ table {
   .brand-button--sm {
     min-height: 40px;
     padding: 0.6rem 1rem;
+  }
+
+  .brand-button::after,
+  .brand-button--light::after,
+  .brand-button--ghost::after {
+    content: '\2192';
+    font-size: 0.95rem;
+    line-height: 1;
+    transition: transform 200ms ease;
+  }
+
+  .brand-button:hover::after,
+  .brand-button--light:hover::after,
+  .brand-button--ghost:hover::after {
+    transform: translateX(3px);
   }
 
   .brand-border {
@@ -337,7 +349,7 @@ table {
   .stack-table tbody td::before {
     content: attr(data-label);
     font-weight: 600;
-    color: rgba(24, 20, 15, 0.55);
+    color: rgba(16, 18, 22, 0.55);
     text-align: left;
   }
 
@@ -373,7 +385,7 @@ table {
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(24, 20, 15, 0.55);
+      color: rgba(16, 18, 22, 0.55);
       background: var(--brand-paper-strong);
       border-bottom: 1px solid var(--brand-line);
     }

@@ -32,8 +32,8 @@ function Showcase() {
       <section className="page-shell py-10 sm:py-14 lg:py-16">
         <div className="max-w-4xl">
           <p className="section-label">Selected work</p>
-          <h1 className="display-heading mt-4 text-[2.25rem] sm:text-5xl lg:text-6xl">
-            Creative work shaped to feel premium, personal, and memorable.
+          <h1 className="display-heading mt-4 text-[2rem] sm:text-3xl lg:text-4xl">
+          Creative work shaped to feel personal, and memorable.
           </h1>
         </div>
       </section>
