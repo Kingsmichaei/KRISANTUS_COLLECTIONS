@@ -28,6 +28,12 @@ function Navbar() {
     <header className="sticky top-0 z-50 border-b border-[var(--brand-line)] bg-white/95 backdrop-blur">
       <div className="page-shell flex h-[4.5rem] items-center justify-between gap-3 sm:h-20">
         <Link to="/" className="flex min-w-0 items-center gap-2.5 text-[var(--brand-ink)] sm:gap-3">
+          <img
+            src="/favicon.svg"
+            alt=""
+            aria-hidden="true"
+            className="h-10 w-10 shrink-0 object-contain sm:h-12 sm:w-12"
+          />
           <span className="min-w-0 text-left leading-tight">
             <span className="block truncate font-display text-base font-bold uppercase tracking-[0.00em] sm:text-lg">
               Krisantus
