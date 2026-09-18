@@ -14,24 +14,56 @@ function Home() {
   const [services, setServices] = useState<Service[]>([])
   const [showcase, setShowcase] = useState<PortfolioItem[]>([])
   const [loading, setLoading] = useState(true)
+  const [showcaseLoading, setShowcaseLoading] = useState(true)
   const [error, setError] = useState('')
 
   useEffect(() => {
-    async function fetchHomeContent() {
-      const [businessResult, servicesResult, showcaseResult] = await Promise.all([
-        supabase.from('business_settings').select('*').maybeSingle(),
-        supabase.from('services').select('*').order('created_at', { ascending: false }).limit(5),
-        supabase.from('portfolio_items').select('*').order('created_at', { ascending: false }).limit(5),
-      ])
-      const failure = businessResult.error || servicesResult.error || showcaseResult.error
-      if (failure) { setError(failure.message); setLoading(false); return }
-      if (businessResult.data) setSettings({ ...defaultSettings, ...businessResult.data, social_links: businessResult.data.social_links || {} })
-      setServices(servicesResult.data || [])
-      setShowcase(showcaseResult.data || [])
-      setLoading(false)
+  async function fetchHomeContent() {
+    const [businessResult, servicesResult, showcaseResult] = await Promise.all([
+      supabase
+        .from('business_settings')
+        .select('*')
+        .maybeSingle(),
+
+      supabase
+        .from('services')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(5),
+
+      supabase
+        .from('portfolio_items')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(5),
+    ])
+
+    const failure =
+      businessResult.error ||
+      servicesResult.error ||
+      showcaseResult.error
+
+    if (businessResult.data) {
+      setSettings({
+        ...defaultSettings,
+        ...businessResult.data,
+        social_links: businessResult.data.social_links || {},
+      })
     }
-    fetchHomeContent()
-  }, [])
+
+    setServices(servicesResult.data || [])
+    setShowcase(showcaseResult.data || [])
+
+    if (failure) {
+      setError(failure.message)
+    }
+
+    setLoading(false)
+    setShowcaseLoading(false)
+  }
+
+  fetchHomeContent()
+}, [])
 
   const featuredImage = showcase[0]?.image_url || services[0]?.image_url || ''
 
@@ -51,7 +83,7 @@ function Home() {
           </div>
           <div className="order-1 relative h-[16rem] overflow-hidden sm:h-[20rem] lg:order-2 lg:h-[27rem]">
             {featuredImage ? (
-              <img src={featuredImage} alt="Featured Krisantus Collection work" className="!h-full w-full object-contain" />
+              <img src={featuredImage} alt="Featured Krisantus Collection work" fetchPriority="high" decoding="async" className="!h-full w-full object-contain" />
             ) : (
               <div className="h-full bg-[linear-gradient(135deg,var(--brand-olive),var(--brand-ink))]" />
             )}
@@ -108,7 +140,16 @@ function Home() {
               View All Projects&nbsp;→
             </Link>
           </div>
-          {showcase.length === 0 ? (
+          {showcaseLoading ? (
+  <div className="flex gap-3 overflow-hidden">
+    {[1, 2, 3].map((item) => (
+      <div
+        key={item}
+        className="aspect-square min-w-[82vw] animate-pulse bg-[var(--brand-paper-strong)] sm:min-w-[46vw] lg:min-w-[31%]"
+      />
+    ))}
+  </div>
+) : showcase.length === 0 ? (
             <div className="border border-dashed border-[var(--brand-line)] p-8 text-center">
               Showcase items will appear here once the admin uploads them.
             </div>
@@ -116,7 +157,7 @@ function Home() {
             <div className="flex snap-x snap-mandatory gap-3 touch-pan-x overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {showcase.map((item) => (
                 <Link to="/showcase" key={item.id} className="group block min-w-[82vw] snap-start overflow-hidden bg-[var(--brand-paper-strong)] sm:min-w-[46vw] lg:min-w-[31%]">
-                  <img src={item.image_url} alt={item.title} className="aspect-square h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                  <img src={item.image_url} alt={item.title} loading="lazy" decoding="async"  className="aspect-square h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                 </Link>
               ))}
             </div>

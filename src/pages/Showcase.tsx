@@ -30,11 +30,16 @@ function Showcase() {
   return (
     <div className="bg-[var(--brand-paper)]">
       <section className="page-shell py-10 sm:py-14 lg:py-16">
-        <div className="max-w-4xl">
-          <p className="section-label">Selected work</p>
-          <h1 className="display-heading mt-4 text-[2rem] sm:text-3xl lg:text-4xl">
-          Creative work shaped to feel personal, and memorable.
-          </h1>
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <p className="section-label">Selected work</p>
+            <h1 className="display-heading mt-4 text-[2rem] sm:text-3xl lg:text-4xl">
+              Creative work shaped to feel personal and memorable.
+            </h1>
+          </div>
+          <p className="max-w-xl text-base leading-7 text-[rgba(16,18,22,0.72)] sm:text-lg sm:leading-8">
+            Explore selected print, design, branding, and customization projects created for people and businesses with something to say.
+          </p>
         </div>
       </section>
 
@@ -48,44 +53,31 @@ function Showcase() {
             No showcase items have been uploaded yet.
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-12">
-            {items.map((item, index) => {
-              const position = index % 4
-              const tall = position === 0 || position === 3
-              const wide = position === 1 || position === 2
-
-              return (
-                <article
-                  key={item.id}
-                  className={`${
-                    tall ? 'lg:col-span-5' : wide ? 'lg:col-span-7' : 'lg:col-span-4'
-                  } overflow-hidden border border-[var(--brand-line)] bg-white`}
-                >
-                  <div className="group relative overflow-hidden">
-                    <img
-                      src={item.image_url}
-                      alt={item.title || 'Portfolio item'}
-                      className={`w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] ${
-                        tall ? 'h-72 sm:h-96 lg:h-[32rem]' : 'h-64 sm:h-80 lg:h-[26rem]'
-                      }`}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[rgba(16,18,22,0.65)] via-transparent to-transparent" />
-
-                    <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
-                      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[rgba(255,255,255,0.76)]">
-                        {item.category || 'Project'}
-                      </p>
-                      <h2 className="mt-2 font-display text-xl font-semibold tracking-[-0.01em] sm:text-2xl">{item.title}</h2>
-                      {item.description && (
-                        <p className="mt-2 max-w-lg text-sm leading-6 text-[rgba(255,255,255,0.85)]">
-                          {item.description}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </article>
-              )
-            })}
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {items.map((item) => (
+              <article key={item.id} className="overflow-hidden border border-[var(--brand-line)] bg-white">
+                <div className="group overflow-hidden">
+                  <img
+                    src={item.image_url}
+                    alt={item.title || 'Portfolio item'}
+                    className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] sm:h-48"
+                  />
+                </div>
+                <div className="p-5">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[var(--brand-olive)]">
+                    {item.category || 'Project'}
+                  </p>
+                  <h2 className="mt-2 font-display text-lg font-semibold tracking-[-0.01em] text-[var(--brand-ink)] sm:text-xl">
+                    {item.title}
+                  </h2>
+                  {item.description && (
+                    <p className="mt-2 text-sm leading-6 text-[rgba(16,18,22,0.72)]">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
+              </article>
+            ))}
           </div>
         )}
       </section>

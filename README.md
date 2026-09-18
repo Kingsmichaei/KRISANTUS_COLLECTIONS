@@ -1,75 +1,126 @@
-# React + TypeScript + Vite
+# Krisantus Collections
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Krisantus Collections is a Vite + React + TypeScript web application for a creative printing and branding studio. It includes a public-facing website for services, showcase, about, and contact pages, plus an admin area protected with Supabase authentication.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Before you start, make sure you have the following installed:
 
-## React Compiler
+- Node.js 18 or newer
+- npm 9 or newer
+- A Supabase project
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 1. Clone the repository
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone <your-repository-url>
+cd KRISANTUS_COLLECTIONS
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
 ```
+
+## 3. Set up environment variables
+
+Create a `.env.local` file in the project root and add your Supabase credentials:
+
+```env
+VITE_SUPABASE_URL=https://your-project-ref.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=your-anon-or-public-key
+```
+
+These variables are used in `src/lib/supabase.ts` and are required for the app to connect to Supabase.
+
+> If the app is using auth-protected admin pages, make sure your Supabase project has an enabled authentication method and at least one valid user account.
+
+## 4. Run the app locally
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Then open the app in your browser:
+
+```text
+http://localhost:5173/
+```
+
+If you need the app available on your local network, use:
+
+```bash
+npm run dev -- --host
+```
+
+## 5. Production build
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Available scripts
+
+```bash
+npm run dev      # Start the Vite development server
+npm run build    # Type-check and build the app for production
+npm run preview  # Preview the production build locally
+npm run lint     # Run ESLint checks
+```
+
+## Admin access
+
+The admin login page is protected by Supabase Auth. After signing in with a valid Supabase user, you can access the dashboard and CMS-related routes.
+
+## Project structure
+
+```text
+src/
+  components/     Shared UI components
+  layouts/        Page layout wrappers
+  lib/            Supabase and app utility setup
+  pages/          Public and admin pages
+  types/          Type definitions
+public/           Static assets
+```
+
+## Troubleshooting
+
+### The app does not start
+- Confirm Node.js and npm are installed correctly.
+- Run `npm install` again.
+- Make sure no other service is already using port 5173.
+
+### Supabase auth errors
+- Check that `.env.local` exists and contains the correct values.
+- Verify the keys match your Supabase project.
+- Restart the Vite dev server after changing environment variables.
+
+### Blank page or missing app data
+- Confirm your Supabase project is active.
+- Check browser console logs for runtime issues.
+- Ensure your database tables and auth setup are configured if you are using data-backed pages.
+
+## Notes
+
+This project is built with:
+
+- React
+- Vite
+- TypeScript
+- Supabase
+- React Router
+
+
+
