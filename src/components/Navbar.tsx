@@ -39,7 +39,7 @@ function Navbar() {
               Krisantus
             </span>
             <span className="block text-[1rem] font-semibold font-display uppercase tracking-[0.1em] text-[var(--brand-ink)]">
-              Collections
+              Special
             </span>
           </span>
         </Link>
